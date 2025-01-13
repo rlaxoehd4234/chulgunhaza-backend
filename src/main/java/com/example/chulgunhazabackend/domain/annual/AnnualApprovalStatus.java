@@ -1,4 +1,4 @@
-package com.example.chulgunhazabackend.domain;
+package com.example.chulgunhazabackend.domain.annual;
 
 import lombok.Getter;
 

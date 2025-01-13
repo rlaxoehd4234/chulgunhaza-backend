@@ -1,5 +1,6 @@
-package com.example.chulgunhazabackend.domain;
+package com.example.chulgunhazabackend.domain.annual;
 
+import com.example.chulgunhazabackend.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table(name="AnnualRecords")
+@Table(name="annual_records")
 @Getter
 public class AnnualRecord extends BaseEntity {
 

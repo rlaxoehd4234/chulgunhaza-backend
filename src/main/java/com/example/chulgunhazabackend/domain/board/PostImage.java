@@ -1,5 +1,6 @@
-package com.example.chulgunhazabackend.domain;
+package com.example.chulgunhazabackend.domain.board;
 
+import com.example.chulgunhazabackend.domain.common.BaseEntity;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

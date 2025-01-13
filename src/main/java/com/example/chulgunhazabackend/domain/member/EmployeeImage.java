@@ -1,4 +1,4 @@
-package com.example.chulgunhazabackend.domain;
+package com.example.chulgunhazabackend.domain.member;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

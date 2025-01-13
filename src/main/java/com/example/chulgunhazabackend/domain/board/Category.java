@@ -1,4 +1,4 @@
-package com.example.chulgunhazabackend.domain;
+package com.example.chulgunhazabackend.domain.board;
 
 
 import jakarta.persistence.Embeddable;

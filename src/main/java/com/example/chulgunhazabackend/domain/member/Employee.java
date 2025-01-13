@@ -1,6 +1,8 @@
-package com.example.chulgunhazabackend.domain;
+package com.example.chulgunhazabackend.domain.member;
 
 
+import com.example.chulgunhazabackend.domain.common.BaseEntity;
+import com.example.chulgunhazabackend.domain.annual.Annual;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name="employees")
 @Getter
-@ToString(exclude = "userRoleList")
 public class Employee extends BaseEntity {
 
     @Id
@@ -49,6 +50,7 @@ public class Employee extends BaseEntity {
     @Column(nullable = false)
     private String position;
 
+    @ToString.Exclude
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "userRoles", joinColumns = @JoinColumn(name = "employee_id"))
     private List<UserRole> userRoleList = new ArrayList<>();
