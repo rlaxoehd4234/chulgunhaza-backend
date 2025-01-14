@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/chulhunhaza?useSSL=false&serverTimezone=UTC
+    username: taedong
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update # auto-update schema (optional)
+    show-sql: true      # SQL 쿼리 출력 (optional)
+    properties:
+      hibernate:
+        format_sql: true # SQL 포맷팅 (optional)

@@ -30,6 +30,11 @@ public class Post extends BaseEntity {
     @Embedded
     private Category category;
 
+    @Column(name = "title", columnDefinition = "VARCHAR(255)")
+    private String title;
+
+    @Column(name = "content", columnDefinition = "VARCHAR(1000)")
+    private String content;
 
     @ToString.Exclude
     @ElementCollection
