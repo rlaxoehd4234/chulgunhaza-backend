@@ -12,12 +12,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
@@ -34,6 +36,7 @@ public class PostServiceImpl implements PostService {
         return postRepository.save(dto.toEntity(new Category(dto.getCategoryName()), fileService.savePostFiles(postFiles))).getId();
     }
 
+    @Transactional(readOnly = true)
     public PostSearchResponseDto findById(Long postNumber) throws MalformedURLException {
         Post post = validAfterGetPost(postNumber);
         // Redis 추가 시 count 증가 로직.. 추가
@@ -43,7 +46,6 @@ public class PostServiceImpl implements PostService {
     public Long deleteById(Long postNumber) throws MalformedURLException {
         Post post = validAfterGetPost(postNumber);
         post.delete();
-        List<PostFile> file = post.getPostFilesList();
         return postRepository.save(post).getId();
     }
 
@@ -53,6 +55,7 @@ public class PostServiceImpl implements PostService {
         return postRepository.save(post).getId();
     }
 
+    @Transactional(readOnly = true)
     public PageDto<PostListResponseDto> findAllByDelFlagFalseAndCategory(Pageable pageable, String category){
         Page<PostListResponseDto> contents = postRepository.findAllByDelFlagFalseAndCategory(pageable, new Category(category)).map(post -> new PostListResponseDto().fromEntity(post));
         return new PageDto<PostListResponseDto>(contents);
