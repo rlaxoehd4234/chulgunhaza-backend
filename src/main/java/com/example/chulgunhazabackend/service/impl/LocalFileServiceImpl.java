@@ -3,7 +3,9 @@ package com.example.chulgunhazabackend.service.impl;
 import com.example.chulgunhazabackend.domain.board.PostFile;
 import com.example.chulgunhazabackend.domain.common.BaseFile;
 import com.example.chulgunhazabackend.service.FileService;
+import jakarta.annotation.PostConstruct;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,17 +20,24 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class LocalFileServiceImpl implements FileService {
 
     @Value("${file.upload-dir}")
     private String uploadDir;
 
+    @PostConstruct
+    public void init() {
+        createUploadDir();
+    }
 
     private void createUploadDir(){
-        File directory = new File(Objects.requireNonNull(uploadDir));
+        File directory = new File(uploadDir);
         if(!directory.exists()){
-            throw new IllegalStateException("파일 생성에 실패 했습니다. : " + directory.getAbsolutePath());
+            boolean created = directory.mkdirs();
+            if (!created) {
+                throw new IllegalStateException("파일 생성에 실패했습니다: " + directory.getAbsolutePath());
+            }
         }
     }
 

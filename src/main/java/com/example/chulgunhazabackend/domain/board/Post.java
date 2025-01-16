@@ -40,7 +40,7 @@ public class Post extends BaseEntity {
     @ToString.Exclude
     @ElementCollection
     @CollectionTable(name = "postFiles", joinColumns = @JoinColumn(name = "post_id"))
-    private List<PostFile> postFilesList = new ArrayList<>();
+    private List<PostFile> postFilesList;
 
     @ColumnDefault("0")
     private int count;
