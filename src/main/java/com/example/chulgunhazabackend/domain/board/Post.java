@@ -22,10 +22,11 @@ public class Post extends BaseEntity {
     @Column(name = "post_id")
     private Long id;
 
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+    //  TODO : User 추가시 주석해제 후 확인
+//    @ToString.Exclude
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "employee_id")
+//    private Employee employee;
 
     @Embedded
     private Category category;
@@ -38,14 +39,24 @@ public class Post extends BaseEntity {
 
     @ToString.Exclude
     @ElementCollection
-    @CollectionTable(name = "postImages", joinColumns = @JoinColumn(name = "post_id"))
-    private List<PostImage> postImagesList = new ArrayList<>();
-
-    @ToString.Exclude
-    @ElementCollection
     @CollectionTable(name = "postFiles", joinColumns = @JoinColumn(name = "post_id"))
     private List<PostFile> postFilesList = new ArrayList<>();
 
     @ColumnDefault("0")
     private int count;
+
+    public Post(String title, String content, Category category, List<PostFile> postFilesList) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.postFilesList = postFilesList;
+    }
+
+    public void updatePost(String title, String content, Category category, List<PostFile> postFilesList) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.postFilesList = postFilesList;
+    }
+
 }

@@ -1,38 +1,24 @@
 package com.example.chulgunhazabackend.dto;
 
-import com.example.chulgunhazabackend.domain.board.Category;
-import com.example.chulgunhazabackend.domain.board.Post;
-import com.example.chulgunhazabackend.domain.board.PostFile;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.List;
 
 @AllArgsConstructor
 @Getter
-public class PostCreateRequestDto {
+public class PostModifyRequestDto {
 
     @NotBlank(message = "제목을 작성해야합니다.")
     @Size(min = 10, max = 255, message = "제목의 길이는 10자 이상 255자 이하입니다.")
     private String title;
 
     @NotBlank(message = "내용을 작성해야합니다.")
-    @Size(min = 100, max = 1000, message = "분문의 길이는 100자 이상 1000자 이하입니다.")
+    @Size(min = 100, max = 1000, message = "분문의 길이는 10자 이상 1000자 이하입니다.")
     private String content;
 
     @NotBlank(message = "카테고리를 선택해야합니다.")
     private String categoryName;
-
-
-    public Post toEntity(Category category, List<PostFile> postFileList ){
-        return new Post(
-                title
-                , content
-                , category
-                , postFileList
-        );
-    }
 
 }
