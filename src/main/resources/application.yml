@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop # auto-update schema (optional)
+      ddl-auto: update # auto-update schema (optional)
     show-sql: true      # SQL 쿼리 출력 (optional)
     properties:
       hibernate:
@@ -21,4 +21,4 @@ spring:
       file-size-threshold: 2KB      # 파일을 디스크에 저장하기 전에 메모리에 보관할 최소 크기 설정
 
 file:
-  upload-dir: C:/Users/taedongCOM/Desktop/upload/
+  upload-dir: C:/chulgunhazaTest

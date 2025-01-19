@@ -49,6 +49,7 @@ public class PostServiceImpl implements PostService {
         return postRepository.save(post).getId();
     }
 
+
     public Long modifyById(Long postNumber, PostModifyRequestDto dto, List<MultipartFile> postFiles) throws IOException {
         Post post = validAfterGetPost(postNumber);
         post.updatePost(dto.getTitle(), dto.getContent(), new Category(dto.getCategoryName()), fileService.savePostFiles(postFiles));

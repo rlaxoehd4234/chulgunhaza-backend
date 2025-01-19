@@ -1,16 +1,12 @@
 package com.example.chulgunhazabackend.domain.member;
 
 import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Embeddable
 @Getter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 public class EmployeeImage {
 
     private String imageName;
@@ -21,4 +17,11 @@ public class EmployeeImage {
 
     private String imageType;
 
+    @Builder
+    public EmployeeImage(String imageName, String imagePath, Long imageSize, String imageType) {
+        this.imageName = imageName;
+        this.imagePath = imagePath;
+        this.imageSize = imageSize;
+        this.imageType = imageType;
+    }
 }

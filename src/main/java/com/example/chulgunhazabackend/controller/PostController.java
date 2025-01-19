@@ -36,7 +36,9 @@ public class PostController {
     }
 
     @PutMapping("/modify/{postNumber}")
-    public ResponseEntity<Long> modifyById(@PathVariable Long postNumber, @Valid @RequestPart PostModifyRequestDto dto, @RequestParam("list") List<MultipartFile> list) throws IOException {
+    public ResponseEntity<Long> modifyById(@PathVariable Long postNumber,
+                                           @Valid @RequestPart PostModifyRequestDto dto,
+                                           @RequestParam("list") List<MultipartFile> list) throws IOException {
         return ResponseEntity.status(200).body(postService.modifyById(postNumber, dto, list));
     }
 
