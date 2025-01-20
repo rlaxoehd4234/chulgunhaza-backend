@@ -17,12 +17,12 @@
 
 
 ## 주요 기능
-- 실시간 채팅 - WebSocket, Redis Pub/sub 사용 
+- 실시간 채팅 - WebSocket, Redis, Message Queue 사용 
 - 페이징 처리 
 - 권한 관리 - Admin, 근태 담장자, 사원 분리 
 - 파일 업로드 - MultiPartFile 사용 추후 S3 마이그레이션 
 - 동시성 제어 - 연차 사용 동시성 제어
-- 대용량 트래픽 - Redis Queue 를 활용한 트래픽 처리
+- 대용량 트래픽 - Message Queue 를 활용한 트래픽 처리
 - 정산 처리 - Message Queue 를 활용한 출근 정산 
 - JWT 로그인 
 - 소프트 딜리트 - delFlag 를 필드를 통해 소프트 딜리트
