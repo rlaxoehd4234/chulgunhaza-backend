@@ -1,6 +1,7 @@
-package com.example.chulgunhazabackend.exception;
+package com.example.chulgunhazabackend.exception.postException;
 
 import com.example.chulgunhazabackend.controller.PostController;
+import com.example.chulgunhazabackend.exception.ErrorResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

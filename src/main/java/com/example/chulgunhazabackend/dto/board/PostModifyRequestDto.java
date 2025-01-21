@@ -1,4 +1,4 @@
-package com.example.chulgunhazabackend.dto;
+package com.example.chulgunhazabackend.dto.board;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

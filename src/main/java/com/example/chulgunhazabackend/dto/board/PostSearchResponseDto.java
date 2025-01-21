@@ -1,4 +1,4 @@
-package com.example.chulgunhazabackend.dto;
+package com.example.chulgunhazabackend.dto.board;
 
 import com.example.chulgunhazabackend.domain.board.Category;
 import com.example.chulgunhazabackend.domain.board.Post;
