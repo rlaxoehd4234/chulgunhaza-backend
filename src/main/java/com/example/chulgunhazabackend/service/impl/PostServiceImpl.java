@@ -4,8 +4,8 @@ import com.example.chulgunhazabackend.domain.board.Category;
 import com.example.chulgunhazabackend.domain.board.Post;
 import com.example.chulgunhazabackend.dto.PageDto;
 import com.example.chulgunhazabackend.dto.board.*;
-import com.example.chulgunhazabackend.exception.PostException;
-import com.example.chulgunhazabackend.exception.PostExceptionType;
+import com.example.chulgunhazabackend.exception.postException.PostException;
+import com.example.chulgunhazabackend.exception.postException.PostExceptionType;
 import com.example.chulgunhazabackend.repository.PostRepository;
 import com.example.chulgunhazabackend.service.FileService;
 import com.example.chulgunhazabackend.service.PostService;
@@ -33,6 +33,7 @@ public class PostServiceImpl implements PostService {
 //    @Autowired
 //    private UserService userService
 
+    @Transactional(rollbackFor = IOException.class)
     public Long create(PostCreateRequestDto dto, List<MultipartFile> postFiles) throws IOException {
         return postRepository.save(dto.toEntity(new Category(dto.getCategoryName()), fileService.savePostFiles(postFiles))).getId();
     }
@@ -50,7 +51,7 @@ public class PostServiceImpl implements PostService {
         return postRepository.save(post).getId();
     }
 
-
+    @Transactional(rollbackFor = IOException.class)
     public Long modifyById(Long postNumber, PostModifyRequestDto dto, List<MultipartFile> postFiles) throws IOException {
         Post post = validAfterGetPost(postNumber);
         post.updatePost(dto.getTitle(), dto.getContent(), new Category(dto.getCategoryName()), fileService.savePostFiles(postFiles));

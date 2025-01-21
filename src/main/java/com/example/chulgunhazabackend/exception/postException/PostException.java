@@ -1,4 +1,4 @@
-package com.example.chulgunhazabackend.exception;
+package com.example.chulgunhazabackend.exception.postException;
 
 import lombok.Getter;
 
