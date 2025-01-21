@@ -24,8 +24,6 @@
 - 동시성 제어 - 연차 사용 동시성 제어
 - 대용량 트래픽 - Message Queue 를 활용한 트래픽 처리
 - 정산 처리 - Message Queue 를 활용한 출근 정산 
-- JWT 로그인 
-=======
 - 대용량 트래픽 - Message Queue를 활용한 트래픽 처리
 - 정산 처리 - Spring Batch를 활용한 출근 정산 
 - 로그인 - 세션 로그인  
