@@ -17,7 +17,6 @@ import com.example.chulgunhazabackend.repository.EmployeeRepository;
 import com.example.chulgunhazabackend.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

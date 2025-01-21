@@ -2,11 +2,12 @@ package com.example.chulgunhazabackend.service.impl;
 
 import com.example.chulgunhazabackend.domain.board.Category;
 import com.example.chulgunhazabackend.domain.board.Post;
-import com.example.chulgunhazabackend.domain.board.PostFile;
-import com.example.chulgunhazabackend.dto.*;
+import com.example.chulgunhazabackend.dto.PageDto;
+import com.example.chulgunhazabackend.dto.board.*;
 import com.example.chulgunhazabackend.exception.PostException;
 import com.example.chulgunhazabackend.exception.PostExceptionType;
 import com.example.chulgunhazabackend.repository.PostRepository;
+import com.example.chulgunhazabackend.service.FileService;
 import com.example.chulgunhazabackend.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,7 +27,7 @@ public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
 
-    private final LocalFileServiceImpl fileService;
+    private final FileService fileService;
 
 //    TODO: userService 추가 후 추가 예정
 //    @Autowired

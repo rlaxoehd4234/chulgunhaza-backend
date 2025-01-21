@@ -1,7 +1,7 @@
 package com.example.chulgunhazabackend.service;
 
-import com.example.chulgunhazabackend.domain.board.Post;
-import com.example.chulgunhazabackend.dto.*;
+import com.example.chulgunhazabackend.dto.PageDto;
+import com.example.chulgunhazabackend.dto.board.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 

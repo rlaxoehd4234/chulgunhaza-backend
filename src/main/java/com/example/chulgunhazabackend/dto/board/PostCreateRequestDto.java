@@ -1,4 +1,4 @@
-package com.example.chulgunhazabackend.dto;
+package com.example.chulgunhazabackend.dto.board;
 
 import com.example.chulgunhazabackend.domain.board.Category;
 import com.example.chulgunhazabackend.domain.board.Post;
@@ -27,12 +27,12 @@ public class PostCreateRequestDto {
 
 
     public Post toEntity(Category category, List<PostFile> postFileList ){
-        return new Post(
-                title
-                , content
-                , category
-                , postFileList
-        );
+        return Post.builder()
+                .title(title)
+                .content(content)
+                .category(category)
+                .postFilesList(postFileList)
+                .build();
     }
 
 }

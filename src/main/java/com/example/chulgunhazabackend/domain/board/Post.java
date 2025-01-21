@@ -15,6 +15,7 @@ import java.util.List;
 @Table(name="posts")
 @ToString
 @Getter
+@Builder
 public class Post extends BaseEntity {
 
     @Id

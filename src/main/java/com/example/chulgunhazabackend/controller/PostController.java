@@ -1,7 +1,8 @@
 package com.example.chulgunhazabackend.controller;
 
-import com.example.chulgunhazabackend.dto.*;
-import com.example.chulgunhazabackend.service.impl.PostServiceImpl;
+import com.example.chulgunhazabackend.dto.PageDto;
+import com.example.chulgunhazabackend.dto.board.*;
+import com.example.chulgunhazabackend.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostController {
 
-    private final PostServiceImpl postService;
+    private final PostService postService;
 
     @PostMapping("/create")
     public ResponseEntity<Long> create(@Valid @RequestPart PostCreateRequestDto dto, @RequestParam("list") List<MultipartFile> list) throws IOException {
