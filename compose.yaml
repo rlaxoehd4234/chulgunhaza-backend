@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  rabbitmq:
+    image: 'rabbitmq:management'
+    environment:
+      - 'RABBITMQ_DEFAULT_USER=${RMQ_USER}'
+      - 'RABBITMQ_DEFAULT_PASS=${RMQ_PASS}'
+    ports:
+      - '5672:5672'   # 메시징 포트
+      - '15672:15672' # 관리 UI 포트
+    restart: unless-stopped # 컨테이너가 예기치 않게 중지된 경우 자동 재시작
+
+  redis:
+    image: 'redis:latest'
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASS}
+    ports:
+      - '6379:6379'
