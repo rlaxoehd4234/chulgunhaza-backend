@@ -27,7 +27,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @QueryHints({
-            @QueryHint(name = "javax.persistence.lock.timeout", value = "3000")
+            @QueryHint(name = "jakarta.persistence.lock.timeout", value = "3000")
     })
     @Query("SELECT e FROM Employee e WHERE e.id = :employeeId")
     Optional<Employee> findEmployeeByIdForUpdate(@Param("employeeId") Long employeeId);

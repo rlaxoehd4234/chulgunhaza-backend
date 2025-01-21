@@ -42,5 +42,7 @@ public class EmployeeModifyRequestDto {
     @NotNull(message = "권한을 입력해야 합니다.")
     private List<UserRole> userRoleList; // 권한
 
+    @NotNull
+    private long version; // 버전
 
 }
