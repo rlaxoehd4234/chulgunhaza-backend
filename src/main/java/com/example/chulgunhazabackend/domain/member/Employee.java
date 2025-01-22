@@ -18,6 +18,7 @@ import java.util.List;
     }
 )
 @Getter
+@ToString
 public class Employee extends BaseEntity {
 
     @Id
@@ -25,6 +26,9 @@ public class Employee extends BaseEntity {
     @SequenceGenerator(name = "employee_seq_gen", sequenceName = "employee_seq", allocationSize = 1)
     @Column(name = "employee_id")
     private Long id;
+
+    @Version
+    private long version;
 
     @Column(nullable = false)
     private String name;
@@ -110,6 +114,11 @@ public class Employee extends BaseEntity {
 
     public void updateAnnual(Annual annual){
         this.annual = annual;
+    }
+
+
+    public boolean matchVersion(long version){
+        return this.version == version;
     }
 
 

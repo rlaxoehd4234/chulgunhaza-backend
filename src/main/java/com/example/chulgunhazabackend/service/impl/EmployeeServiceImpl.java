@@ -78,12 +78,17 @@ public class EmployeeServiceImpl implements EmployeeService {
                                           MultipartFile image) throws IOException {
         Events.raise(new EmployeeModifyEvent(1L, 10124024L));
 
-        checkEmail(employeeModifyRequestDto.getEmail());
         Employee findEmployee = employeeRepository.findEmployeeByIdForUpdate(id).orElseThrow(()
                 -> new EmployeeException(EmployeeExceptionType.NOT_EXIST_USER));
 
+        if(!employeeModifyRequestDto.getEmail().equals(findEmployee.getEmail())){
+            checkEmail(employeeModifyRequestDto.getEmail());
+        }
+
+        checkVersion(findEmployee, employeeModifyRequestDto.getVersion());
+
         findEmployee.updateEmployee(employeeModifyRequestDto, checkImageIsNull(image));
-        Employee saved = employeeRepository.save(findEmployee);
+        Employee saved = employeeRepository.saveAndFlush(findEmployee);
 
         return EmployeeResponseDto.fromEntity(saved);
     }
@@ -95,13 +100,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         findEmployee.delete();
         return employeeRepository.save(findEmployee).getId();
     }
-
     public void checkEmail(String email){
         Optional<Employee> employeeEmail = employeeRepository.findEmployeeByEmail(email);
         if(employeeEmail.isPresent()){
             throw new EmployeeException(EmployeeExceptionType.ALREADY_EXIST_EMAIL);
         }
     }
+
+    private void checkVersion(Employee findEmployee, long version){
+        if(!findEmployee.matchVersion(version)){
+            throw new EmployeeException(EmployeeExceptionType.ALREADY_CHANGED);
+        }
+    }
+
 
     private EmployeeImage checkImageIsNull(MultipartFile multipartFile){
 

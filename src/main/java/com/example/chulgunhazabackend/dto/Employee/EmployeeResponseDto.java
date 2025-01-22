@@ -31,11 +31,13 @@ public class EmployeeResponseDto {
 
     private Annual annual;
 
+    private long version;
+
     public static EmployeeResponseDto fromEntity(Employee employee){
         return new EmployeeResponseDto(
                 employee.getId(), employee.getName(), employee.getEmail(),
                 employee.getEmployeeImage(), employee.getGender(), employee.getDepartment(),
-                employee.getPosition(), employee.getUserRoleList(), employee.getAnnual()
+                employee.getPosition(), employee.getUserRoleList(), employee.getAnnual(), employee.getVersion()
         );
     }
 }
