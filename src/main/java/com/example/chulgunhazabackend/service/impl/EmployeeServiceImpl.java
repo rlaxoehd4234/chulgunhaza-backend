@@ -19,6 +19,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +36,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     private final LocalFileServiceImpl fileService;
 
     // 사원 최초 생성 시 기본이미지, 기본 연차 생성
@@ -46,6 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .build(); // 기본 이미지를 사용한다고 지정
 
         Employee employee = employeeCreateRequestDto.toEntity(employeeImage, new Annual());
+        employee.setInitialPassword(passwordEncoder); // 초기 비밀번호 지정
         Employee saved = employeeRepository.save(employee);
         System.out.println("생성됨");
         System.out.println(saved.getId());

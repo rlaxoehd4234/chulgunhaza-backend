@@ -3,7 +3,10 @@ server:
   servlet:
     session:
       cookie:
-        name: CHULGUNHAZA_COOKIE
+        name: JSESSIONID
+        max-age: 14400 # 4시간
+        http-only: true
+        # https 설정 추가 예정
 
 spring:
   datasource:

@@ -3,6 +3,7 @@ package com.example.chulgunhazabackend.exception.employeeException;
 import com.example.chulgunhazabackend.controller.EmployeeController;
 import com.example.chulgunhazabackend.exception.ErrorResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

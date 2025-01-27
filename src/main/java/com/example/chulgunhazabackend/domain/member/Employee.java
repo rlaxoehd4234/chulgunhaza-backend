@@ -6,6 +6,8 @@ import com.example.chulgunhazabackend.domain.annual.Annual;
 import com.example.chulgunhazabackend.dto.Employee.EmployeeModifyRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -70,6 +72,8 @@ public class Employee extends BaseEntity {
     @Embedded
     private Annual annual;
 
+    private String password;
+
     @Builder
     public Employee(String name, String email, Gender gender,
                     LocalDate birthdate, LocalDate hireDate, LocalDate resignationDate,
@@ -114,6 +118,15 @@ public class Employee extends BaseEntity {
 
     public void updateAnnual(Annual annual){
         this.annual = annual;
+    }
+
+
+    public void updatePassword(PasswordEncoder passwordEncoder, String password){
+        this.password = passwordEncoder.encode(password);
+    }
+
+    public void setInitialPassword(PasswordEncoder passwordEncoder){
+        this.password =  passwordEncoder.encode("qwer!!"); // password 초기 지정
     }
 
 

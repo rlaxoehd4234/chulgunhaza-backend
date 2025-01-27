@@ -1,6 +1,7 @@
 package com.example.chulgunhazabackend.controller;
 
 import com.example.chulgunhazabackend.dto.Employee.EmployeeCreateRequestDto;
+import com.example.chulgunhazabackend.dto.Employee.EmployeeCredentialDto;
 import com.example.chulgunhazabackend.dto.Employee.EmployeeModifyRequestDto;
 import com.example.chulgunhazabackend.dto.PageDto;
 import com.example.chulgunhazabackend.service.EmployeeService;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,7 +26,9 @@ public class EmployeeController {
     // 사원 생성
     @PostMapping("/create")
     public ResponseEntity<?> create(
-            @Valid @RequestBody EmployeeCreateRequestDto employeeCreateRequestDto) throws IOException {
+            @Valid @RequestBody EmployeeCreateRequestDto employeeCreateRequestDto,
+            @AuthenticationPrincipal EmployeeCredentialDto EmployeeCredentialDto
+    ) throws IOException {
         return ResponseEntity.status(201).body(employeeService.create(employeeCreateRequestDto));
     }
 
