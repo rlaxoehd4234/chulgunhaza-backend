@@ -26,15 +26,15 @@ public class EmployeeController {
     // 사원 생성
     @PostMapping("/create")
     public ResponseEntity<?> create(
-            @Valid @RequestBody EmployeeCreateRequestDto employeeCreateRequestDto,
-            @AuthenticationPrincipal EmployeeCredentialDto EmployeeCredentialDto
+            @Valid @RequestBody EmployeeCreateRequestDto employeeCreateRequestDto
     ) throws IOException {
         return ResponseEntity.status(201).body(employeeService.create(employeeCreateRequestDto));
     }
 
     // 사원 목록 조회
     @GetMapping("/list")
-    public ResponseEntity<PageDto<?>> getEmployeeList(@PageableDefault(size = 10) Pageable pageable){
+    public ResponseEntity<PageDto<?>> getEmployeeList(
+            @PageableDefault(size = 10) Pageable pageable){
         return ResponseEntity.status(200).body(employeeService.getEmployeeList(pageable));
     }
 

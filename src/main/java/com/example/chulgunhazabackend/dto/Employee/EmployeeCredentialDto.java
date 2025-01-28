@@ -1,5 +1,8 @@
 package com.example.chulgunhazabackend.dto.Employee;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -10,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@ToString
+@Getter
 public class EmployeeCredentialDto extends User {
 
     private Long id;
