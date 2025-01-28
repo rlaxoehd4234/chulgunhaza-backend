@@ -42,8 +42,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     // 사원 최초 생성 시 기본이미지, 기본 연차 생성
 
-    public Long create(EmployeeCreateRequestDto employeeCreateRequestDto) throws IOException{
-        Events.raise(new EmployeeCreateEvent(1L, 10124024L)); // 대상자, 진행하는 사람
+    public Long create(EmployeeCreateRequestDto employeeCreateRequestDto, Long executor) throws IOException{
+
+        Events.raise(new EmployeeCreateEvent(executor)); //진행하는 사람
         checkEmail(employeeCreateRequestDto.getEmail());
         EmployeeImage employeeImage = EmployeeImage.builder()
                 .imageName("default image")
@@ -80,8 +81,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     // TODO: 사원 파일 이미지 저장 서비스 추가 예정
     @Transactional(rollbackFor = IOException.class)
     public EmployeeResponseDto modifyById(Long id, EmployeeModifyRequestDto employeeModifyRequestDto,
-                                          MultipartFile image) throws IOException {
-        Events.raise(new EmployeeModifyEvent(1L, 10124024L));
+                                          MultipartFile image, Long executor) throws IOException {
+        Events.raise(new EmployeeModifyEvent(executor));
 
         Employee findEmployee = employeeRepository.findEmployeeByIdForUpdate(id).orElseThrow(()
                 -> new EmployeeException(EmployeeExceptionType.NOT_EXIST_USER));

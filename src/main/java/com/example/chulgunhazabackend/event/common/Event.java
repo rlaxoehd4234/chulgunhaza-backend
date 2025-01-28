@@ -11,12 +11,10 @@ public abstract class Event {
     // 진행자 사원번호
     private final Long employeeNumber;
 
-    // 대상 사원번호
-    private final Long target;
 
-    public Event(Long target, Long employeeNumber) {
+
+    public Event(Long employeeNumber) {
         this.timestamp = System.currentTimeMillis();
-        this.target = target;
         this.employeeNumber = employeeNumber;
     }
 }
