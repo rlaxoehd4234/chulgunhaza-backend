@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
@@ -41,8 +42,14 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         // 4시간 (초 단위)
         httpSession.setMaxInactiveInterval(4 * 60 * 60);
 
+        // 응답 데이터 생성
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("message", "로그인 성공");
+        responseData.put("employeeNo", claims.get("employeeNo"));
+        responseData.put("employeeRoles", claims.get("roles"));
+
         // JSON 응답 생성
-        String jsonStr = gson.toJson(Map.of("message", "로그인 성공"));
+        String jsonStr = gson.toJson(responseData);
 
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType("application/json; charset=UTF-8");
