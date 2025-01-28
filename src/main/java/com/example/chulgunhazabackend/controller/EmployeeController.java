@@ -48,7 +48,6 @@ public class EmployeeController {
     }
 
 
-    // 사원 정보 수정 => 현재 로그인한 유저와 정보 일치하지 않으면 수정 불가
     @PutMapping("/modify/{employeeId}")
     @PreAuthorize("hasAnyRole('ROLE_MANAGER')")
     public ResponseEntity<?> modifyEmployee(@PathVariable Long employeeId,
