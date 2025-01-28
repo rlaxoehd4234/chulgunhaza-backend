@@ -9,8 +9,8 @@ import lombok.ToString;
 public class EmployeeCreateEvent extends Event {
 
     private final String message;
-    public EmployeeCreateEvent(Long target, Long employeeNumber) {
-        super(target, employeeNumber);
-        this.message = target + " 사원이 생성되었습니다.";
+    public EmployeeCreateEvent(Long employeeNumber) {
+        super(employeeNumber);
+        this.message = " 사원이 생성되었습니다.";
     }
 }

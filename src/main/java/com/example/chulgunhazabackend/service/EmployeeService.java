@@ -12,14 +12,14 @@ import java.io.IOException;
 
 public interface EmployeeService {
 
-    Long create(EmployeeCreateRequestDto employeeCreateRequestDto) throws IOException;
+    Long create(EmployeeCreateRequestDto employeeCreateRequestDto, Long executor) throws IOException;
 
     PageDto<?> getEmployeeList(Pageable pageable);
 
     EmployeeResponseDto getEmployee(Long id);
 
     EmployeeResponseDto modifyById(Long id, EmployeeModifyRequestDto employeeModifyRequestDto,
-                                   MultipartFile image) throws IOException;
+                                   MultipartFile image, Long executor) throws IOException;
     Long deleteById(Long id);
 
 }
