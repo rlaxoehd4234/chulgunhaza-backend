@@ -51,7 +51,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         // JSON 응답 생성
         String jsonStr = gson.toJson(responseData);
 
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setStatus(HttpServletResponse.SC_ACCEPTED);
         response.setContentType("application/json; charset=UTF-8");
 
         PrintWriter printWriter = response.getWriter();
