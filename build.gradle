@@ -57,6 +57,10 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+
+    // spring retry
+    implementation 'org.springframework.retry:spring-retry'
 }
 
 tasks.named('test') {

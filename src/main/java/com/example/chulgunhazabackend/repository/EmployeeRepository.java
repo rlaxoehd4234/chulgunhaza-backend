@@ -21,6 +21,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     Optional<Employee> findEmployeeById(Long id);
 
+    Optional<Employee> findEmployeeByEmployeeNo(Long employeeNo);
+
     @Query("SELECT e FROM Employee e " +
             "WHERE e.delFlag = false " +
             "ORDER BY e.department ASC, e.position, e.name")

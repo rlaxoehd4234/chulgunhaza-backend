@@ -53,9 +53,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = employeeCreateRequestDto.toEntity(employeeImage, new Annual());
         employee.setInitialPassword(passwordEncoder); // 초기 비밀번호 지정
         Employee saved = employeeRepository.save(employee);
-        System.out.println("생성됨");
-        System.out.println(saved.getId());
-
         return saved.getId();
     }
 

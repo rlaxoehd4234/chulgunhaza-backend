@@ -39,6 +39,19 @@ public class SseEmitterManager {
         return emitter;
 
     }
+
+    // INFO: mainEmitter 를 등록하고 반환하는 메서드 입니다.
+   public SseEmitter mainRegisterEmitter(Long employeeNo){
+       SseEmitter emitter = new SseEmitter(10000000L);
+       emitters.get(EmitterType.MAIN).put(employeeNo, emitter);
+       emitter.onCompletion(() -> emitters.get(EmitterType.MAIN).remove(employeeNo));
+       emitter.onTimeout(() -> emitters.get(EmitterType.MAIN).remove(employeeNo));
+       sendEmitterData(EmitterType.MAIN, emitter, employeeNo, "MainSseConnect", "Success Main SSE");
+       return emitter;
+   }
+
+
+
     // INFO: chatEmitter 를 가져오는 로직
     public SseEmitter getChatEmitter(Long employeeNo) {
         return emitters.get(EmitterType.CHAT).get(employeeNo);
@@ -47,6 +60,15 @@ public class SseEmitterManager {
     // INFO chatEmitter 를 제거하는 로직
     public void removeChatEmitter(Long employeeNo) {
         emitters.get(EmitterType.CHAT).remove(employeeNo);
+    }
+
+    // INFO: mainEmitter 를 가져오는 로직
+    public SseEmitter getMainEmitter(Long employeeNo){
+        return emitters.get(EmitterType.MAIN).get(employeeNo);
+    }
+
+    public void removeMainEmitter(Long employeeNo) {
+        emitters.get(EmitterType.MAIN).remove(employeeNo);
     }
 
     // INFO: 모든 Emitter 를 제거하는 로직 -> logout 시에 사용
