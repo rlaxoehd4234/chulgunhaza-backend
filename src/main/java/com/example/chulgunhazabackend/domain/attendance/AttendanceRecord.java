@@ -33,4 +33,10 @@ public class AttendanceRecord extends BaseEntity {
     private AttendanceType attendanceType;
 
 
+    @Builder
+    public AttendanceRecord(Employee employee, LocalDateTime checkInTime, AttendanceType attendanceType) {
+        this.employee = employee;
+        this.checkInTime = checkInTime;
+        this.attendanceType = attendanceType;
+    }
 }

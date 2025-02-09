@@ -45,6 +45,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         // 응답 데이터 생성
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("message", "로그인 성공");
+        responseData.put("depart", claims.get("department"));
+        responseData.put("name", claims.get("name"));
         responseData.put("employeeNo", claims.get("employeeNo"));
         responseData.put("employeeRoles", claims.get("roles"));
 
