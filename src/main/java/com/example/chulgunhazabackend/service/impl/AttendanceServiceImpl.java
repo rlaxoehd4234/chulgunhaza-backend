@@ -8,6 +8,7 @@ import com.example.chulgunhazabackend.exception.employeeException.EmployeeExcept
 import com.example.chulgunhazabackend.exception.employeeException.EmployeeExceptionType;
 import com.example.chulgunhazabackend.repository.AttendanceRecordRepository;
 import com.example.chulgunhazabackend.repository.EmployeeRepository;
+import com.example.chulgunhazabackend.service.AttendanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class AttendanceServiceImpl {
+public class AttendanceServiceImpl implements AttendanceService {
 
     private final EmployeeRepository employeeRepository;
     private final AttendanceRecordRepository attendanceRecordRepository;

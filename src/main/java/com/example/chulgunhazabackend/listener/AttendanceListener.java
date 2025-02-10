@@ -2,10 +2,8 @@ package com.example.chulgunhazabackend.listener;
 
 import com.example.chulgunhazabackend.config.RabbitMQConfig;
 import com.example.chulgunhazabackend.dto.attendance.AttendanceCreateRequestDto;
-import com.example.chulgunhazabackend.dto.chat.ChatNotificationDto;
 import com.example.chulgunhazabackend.exception.employeeException.EmployeeException;
-import com.example.chulgunhazabackend.exception.employeeException.EmployeeExceptionType;
-import com.example.chulgunhazabackend.service.impl.AttendanceServiceImpl;
+import com.example.chulgunhazabackend.service.AttendanceService;
 import com.rabbitmq.client.Channel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,11 +12,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.retry.annotation.Backoff;
-import org.springframework.retry.annotation.Recover;
-import org.springframework.retry.annotation.Retryable;
-import org.springframework.retry.support.RetryTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -28,7 +21,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AttendanceListener {
 
-    private final AttendanceServiceImpl attendanceService; // 다형성 수정
+    private final AttendanceService attendanceService; // 다형성 수정
     private final RabbitTemplate rabbitTemplate;
 
 
@@ -44,7 +37,7 @@ public class AttendanceListener {
             System.out.println("확인 : " + e.getMessage());// 메세지를 보내야 함 (출근 등록이 실패하였습니다 : 이유)
             channel.basicNack(tag, false, false); // 큐에 있는 메세지 삭제
 
-        } catch (Exception e) {
+        }catch (Exception e) {
             // DLQ 이동
             attendanceCreateRequestDto.setMqFailMessage(e.getMessage());
             rabbitTemplate.convertAndSend(RabbitMQConfig.DLX, RabbitMQConfig.A_DLQ, attendanceCreateRequestDto);
