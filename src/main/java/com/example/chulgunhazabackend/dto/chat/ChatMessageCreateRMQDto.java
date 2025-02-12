@@ -6,6 +6,8 @@ import com.example.chulgunhazabackend.domain.member.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @AllArgsConstructor
 public class ChatMessageCreateRMQDto {
@@ -18,12 +20,14 @@ public class ChatMessageCreateRMQDto {
 
     private Long roomId;
 
+    private LocalDateTime creatTime;
 
     public ChatMessage toEntity(ChatRoom chatRoom, Employee employee){
         return ChatMessage.builder()
                 .employee(employee)
                 .chatRoom(chatRoom)
                 .message(message)
+                .createTime(creatTime)
                 .build();
     }
 }
