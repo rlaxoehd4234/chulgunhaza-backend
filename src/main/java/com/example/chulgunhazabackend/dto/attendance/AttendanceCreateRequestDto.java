@@ -3,7 +3,6 @@ package com.example.chulgunhazabackend.dto.attendance;
 import com.example.chulgunhazabackend.domain.attendance.AttendanceRecord;
 import com.example.chulgunhazabackend.domain.attendance.AttendanceType;
 import com.example.chulgunhazabackend.domain.member.Employee;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -45,9 +44,7 @@ public class AttendanceCreateRequestDto implements Serializable {
 
         return checkInTime.toLocalTime().isAfter(standardTime)
                 ? AttendanceType.LATE : AttendanceType.NORMAL;
-        // 결근 처리 추가 예정 
+        // 결근 처리 추가 예정
     }
-
-
 
 }
